@@ -1,13 +1,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/navigation_home"
-        android:title="@string/naviTitle_home" />
-
+        android:id="@+id/menu_home"
+        android:enabled="true"
+        android:title="홈" />
     <item
-        android:id="@+id/navigation_dashboard"
-        android:title="@string/naviTitle_menu" />
-
+        android:id="@+id/menu_bakery_list"
+        android:enabled="true"
+        android:title="기록" />
     <item
-        android:id="@+id/navigation_notifications"
-        android:title="@string/naviTitle_myPage" />
+        android:id="@+id/menu_my_page"
+        android:enabled="true"
+        android:title="마이페이지" />
 </menu>
