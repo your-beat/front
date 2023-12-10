@@ -1,60 +1,51 @@
 package com.example.your_beat_front.presentation.home
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.your_beat_front.R
-import com.example.your_beat_front.data.State
-import com.example.your_beat_front.databinding.ItemDeviceOffCardBinding
-import com.example.your_beat_front.databinding.ItemDeviceOnCardBinding
+import com.example.your_beat_front.data.Device
+import com.example.your_beat_front.databinding.ItemDeviceCardBinding
 
-data class Device(val name: String, val state: String, val type: String, val location: String)
-class MyDeviceListAdapter(private val devices: List<Device>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class DeviceAdapter(private val devices: List<Device>) : RecyclerView.Adapter<DeviceAdapter.DeviceViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return when (viewType) {
-            State.ON -> {
-                val binding = ItemDeviceOnCardBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-                DeviceOnViewHolder(binding)
+    class DeviceViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        // 뷰 바인딩 객체 사용 (레이아웃에 따라 이름이 달라질 수 있습니다)
+        val binding = ItemDeviceCardBinding.bind(view)
+
+        fun bind(device: Device) {
+            binding.deviceName.text = device.name
+            binding.deviceLocation.text = device.location
+            binding.deviceStatus.text = if (device.status == 0) "off" else "on"
+
+            // 기기 종류에 따라 아이콘 설정 (예제입니다, 실제 코드는 다를 수 있음)
+            val iconResId = when (device.type) {
+                0 -> R.drawable.ic_station_42//station 아이콘
+                1 -> R.drawable.ic_tv_42   // TV 아이콘
+                2 -> R.drawable.ic_bulb_42//조명 아이콘
+                // 다른 기기 종류에 따른 아이콘 추가
+                else -> R.drawable.ic_default_42 // 기본 아이콘
             }
-            State.OFF -> {
-                val binding = ItemDeviceOffCardBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-                DeviceOffViewHolder(binding)
-            }
-            else -> throw IllegalArgumentException("Invalid view type")
+            binding.deviceIcon.setImageResource(iconResId)
+
+            // 기기 상태에 따라 배경 설정
+            val backgroundResId = if (device.status == 1) R.drawable.card_gradient_gb_round else R.drawable.card_gradient_ro_round
+            binding.root.setBackgroundResource(backgroundResId)
         }
     }
 
-
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        val device = devices[position]
-        when (holder) {
-            is DeviceOnViewHolder -> {
-                // 'item_device_on_card.xml' 레이아웃에 데이터 바인딩
-                holder.binding.apply {
-                    // 예시: deviceName.text = device.name
-                    // 데이터에 따라 필요한 뷰에 값을 설정
-                }
-            }
-            is DeviceOffViewHolder -> {
-                // 'item_device_off_card.xml' 레이아웃에 데이터 바인딩
-                holder.binding.apply {
-                    // 예시: deviceName.text = device.name
-                    // 데이터에 따라 필요한 뷰에 값을 설정
-                }
-            }
-        }
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DeviceViewHolder {
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_device_card, parent, false)
+        return DeviceViewHolder(view)
     }
 
-
-    override fun getItemCount() = devices.size
-
-    override fun getItemViewType(position: Int): Int {
-        return if (devices[position].state == "on") State.ON else State.OFF
+    override fun onBindViewHolder(holder: DeviceViewHolder, position: Int) {
+        holder.bind(devices[position])
     }
 
-    //todo : state에 따라 view 다르게 구성할 내용 작성.
-    class DeviceOnViewHolder(val binding: ItemDeviceOnCardBinding): RecyclerView.ViewHolder(binding.root) { /* ... */ }
-    class DeviceOffViewHolder(val binding: ItemDeviceOffCardBinding): RecyclerView.ViewHolder(binding.root) { /* ... */ }
-
+    override fun getItemCount(): Int {
+        return devices.size
+    }
 }
+
