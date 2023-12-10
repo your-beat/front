@@ -5,6 +5,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.your_beat_front.R
 import com.example.your_beat_front.data.State
+import com.example.your_beat_front.databinding.ItemDeviceOffCardBinding
+import com.example.your_beat_front.databinding.ItemDeviceOnCardBinding
 
 data class Device(val name: String, val state: String, val type: String, val location: String)
 class MyDeviceListAdapter(private val devices: List<Device>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {

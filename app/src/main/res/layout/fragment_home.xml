@@ -25,13 +25,14 @@
         android:layout_height="wrap_content"/>
 
     <!-- 기기 추가 버튼 -->
-    <include
-        android:layout_height="50dp"
-        android:layout_width="match_parent"
-        layout="@layout/item_add_device_btn"
-        android:id="@+id/btn_add_device"/>
 
     <!-- 기기 목록 RecyclerView -->
+    <include
+        android:id="@+id/btn_add_device"
+        layout="@layout/item_add_device_btn"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/device_list_recycler_view"
         android:layout_width="match_parent"

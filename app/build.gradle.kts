@@ -10,6 +10,7 @@ android {
     compileSdk = 33
     buildFeatures{
         viewBinding = true
+        dataBinding = true
     }
     defaultConfig {
         applicationId = "com.example.your_beat_front"
