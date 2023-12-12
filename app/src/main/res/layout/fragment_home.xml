@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/white"
+    android:background="@color/gray100"
     android:paddingTop="30dp"
     android:paddingHorizontal="24dp">
 
@@ -30,7 +30,6 @@
     <include
         android:id="@+id/btn_add_device"
         layout="@layout/item_add_device_btn"
-        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="50dp" />
 

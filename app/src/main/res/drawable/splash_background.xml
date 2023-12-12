@@ -1,0 +1,10 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <color android:color="#FFFFFF"/> <!-- 배경색 -->
+    </item>
+    <item>
+        <bitmap
+            android:gravity="center"
+            android:src="@drawable/ic_splash"/> <!-- 벡터 이미지를 비트맵으로 변환 -->
+    </item>
+</layer-list>

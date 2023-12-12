@@ -1,7 +1,9 @@
 package com.example.your_beat_front
 
+import android.content.res.ColorStateList
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.example.your_beat_front.databinding.ActivityMainBinding
@@ -19,6 +21,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupBottomNavigation() {
         val bottomNavigationView = binding.bnvHome
+
         bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.menu_home -> replaceFragment(HomeFragment())

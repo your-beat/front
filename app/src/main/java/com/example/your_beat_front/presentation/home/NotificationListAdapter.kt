@@ -44,7 +44,7 @@ class NotificationListAdapter(private val notice: List<Notification>) : Recycler
                 binding.notificationName.setTextColor(blackColor)
                 binding.notificationTime.setTextColor(mainColor)
                 binding.notificationInfo.setTextColor(grayColor)
-                binding.root.setBackgroundResource(android.R.color.white)
+                binding.root.setBackgroundResource(R.drawable.card_white_round)
             }
         }
     }

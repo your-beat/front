@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:background="@color/white"
+    android:background="@drawable/card_white_round"
     android:padding="16dp">
 
     <!-- 아이콘 -->

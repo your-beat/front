@@ -26,11 +26,21 @@
     <color name="sub800">#af1e51</color>
     <color name="sub900">#8b164a</color>
 
+    <!--    secondary-->
+    <color name="gray50">#f7f8f9</color>
+    <color name="gray100">#e8ebed</color>
+    <color name="gray200">#c9cdd2</color>
+    <color name="gray300">#9ea4aa</color>
+    <color name="gray400">#72787f</color>
+    <color name="gray500">#454c53</color>
+    <color name="gray600">#26282b</color>
+    <color name="gray700">#1b1d1f</color>
+
     <color name="text_black">#FF000000</color>
     <color name="text_white">#FFFFFFFF</color>
     <color name="text_gray">#595959</color>
 
-    <color name="background_lightgray">#F6F8FA</color>
+    <color name="background_lightgray">#F7F8F9</color>
 
     <color name="menu_unselected">#FF020715</color>
     <color name="menu_selected">#FF00CABE</color>

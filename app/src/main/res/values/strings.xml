@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">4beat</string>
+    <string name="app_name">네박자</string>
 
     <!--네비게이션 string-->
     <string name="naviTitle_home">홈</string>

@@ -7,13 +7,13 @@
     android:paddingHorizontal="20dp"
     android:clickable="true">
 
-
+<!--gray200로 지정해둔 부분 기능 구현시 제거 및 black으로 설정-->
     <TextView
         android:id="@+id/leftView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="기기 추가하기"
-        android:textColor="@color/text_black"
+        android:textColor="@color/gray200"
         android:textAppearance="@style/TextAppearance.BodyM1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline"
@@ -32,7 +32,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/guideline"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/gray200" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
