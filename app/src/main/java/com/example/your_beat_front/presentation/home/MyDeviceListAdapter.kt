@@ -1,8 +1,11 @@
 package com.example.your_beat_front.presentation.home
 
+import android.graphics.Rect
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
+import androidx.core.graphics.drawable.DrawableCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.your_beat_front.R
 import com.example.your_beat_front.data.Device
@@ -19,6 +22,7 @@ class DeviceAdapter(private val devices: List<Device>) : RecyclerView.Adapter<De
             binding.deviceLocation.text = device.location
             binding.deviceStatus.text = if (device.status == 0) "off" else "on"
 
+
             // 기기 종류에 따라 아이콘 설정 (예제입니다, 실제 코드는 다를 수 있음)
             val iconResId = when (device.type) {
                 0 -> R.drawable.ic_station_42//station 아이콘
@@ -26,6 +30,11 @@ class DeviceAdapter(private val devices: List<Device>) : RecyclerView.Adapter<De
                 2 -> R.drawable.ic_bulb_42//조명 아이콘
                 // 다른 기기 종류에 따른 아이콘 추가
                 else -> R.drawable.ic_default_42 // 기본 아이콘
+            }
+            // 아이콘 색상 변경 코드
+            val iconDrawable = ContextCompat.getDrawable(itemView.context, iconResId)?.mutate()?.apply {
+                val whiteColor = ContextCompat.getColor(itemView.context, android.R.color.white)
+                DrawableCompat.setTint(this, whiteColor)
             }
             binding.deviceIcon.setImageResource(iconResId)
 
@@ -46,6 +55,24 @@ class DeviceAdapter(private val devices: List<Device>) : RecyclerView.Adapter<De
 
     override fun getItemCount(): Int {
         return devices.size
+    }
+}
+
+class SpaceItemDecoration(private val space: Int) : RecyclerView.ItemDecoration() {
+    override fun getItemOffsets(
+        outRect: Rect,
+        view: View,
+        parent: RecyclerView,
+        state: RecyclerView.State
+    ) {
+        with(outRect) {
+            if (parent.getChildAdapterPosition(view) == 0) {
+                top = space
+            }
+            left =  space
+            right = space
+            bottom = space
+        }
     }
 }
 

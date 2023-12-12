@@ -4,7 +4,7 @@
     <color name="white">#FFFFFFFF</color>
 
 <!--    main variation-->
-    <color name="mai50">#def4f5</color>
+    <color name="main50">#def4f5</color>
     <color name="main100">#ace4e4</color>
     <color name="main200">#71d4d2</color>
     <color name="main">#0fc2bf</color>
