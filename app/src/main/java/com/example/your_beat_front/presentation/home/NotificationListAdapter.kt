@@ -12,9 +12,10 @@ import com.example.your_beat_front.data.Device
 import com.example.your_beat_front.data.Notification
 import com.example.your_beat_front.databinding.ItemNotificationCardBinding
 import java.text.SimpleDateFormat
+import java.time.format.DateTimeFormatter
 import java.util.Locale
 
-class NotificationListAdapter(private val devices: List<Notification>) : RecyclerView.Adapter<DeviceAdapter.DeviceViewHolder>() {
+class NotificationListAdapter(private val notice: List<Notification>) : RecyclerView.Adapter<NotificationListAdapter.NotificationViewHolder>() {
 
     class NotificationViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         // 뷰 바인딩 객체 사용 (레이아웃에 따라 이름이 달라질 수 있습니다)
@@ -23,19 +24,28 @@ class NotificationListAdapter(private val devices: List<Notification>) : Recycle
         fun bind(notification: Notification) {
             binding.notificationName.text = notification.name
 
-            val dateFormat = SimpleDateFormat("yyyy.MM.dd HH:mm", Locale.getDefault())
-            val dateString = dateFormat.format(notification.time)
-            binding.notificationTime.text = dateString
+            val formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd HH:mm")
+            val formattedDateTime = notification.dateTime.format(formatter)
+            binding.notificationTime.text = formattedDateTime
             binding.notificationInfo.text = notification.info
 
-
-            // 기기 상태에 따라 배경 설정
-//            val backgroundResId = if (notification.type==1){
-//                R.drawable.card_gradient_gb_round
-//            } else{
-//                R.drawable.card_gradient_ro_round
-//            }
-//            binding.root.setBackgroundResource(backgroundResId)
+            // type가 1일 경우(이상 감지 알림의 경우) 글자색 및 배경 변경
+            if (notification.type == 1) {
+                val whiteColor = ContextCompat.getColor(itemView.context, android.R.color.white)
+                binding.notificationName.setTextColor(whiteColor)
+                binding.notificationTime.setTextColor(whiteColor)
+                binding.notificationInfo.setTextColor(whiteColor)
+                binding.root.setBackgroundResource(R.drawable.card_gradient_gb_round)
+            } else {
+                // 기본 색상 및 배경 설정
+                val blackColor = ContextCompat.getColor(itemView.context, R.color.text_black)
+                val grayColor = ContextCompat.getColor(itemView.context, R.color.text_gray)
+                val mainColor = ContextCompat.getColor(itemView.context, R.color.main)
+                binding.notificationName.setTextColor(blackColor)
+                binding.notificationTime.setTextColor(mainColor)
+                binding.notificationInfo.setTextColor(grayColor)
+                binding.root.setBackgroundResource(android.R.color.white)
+            }
         }
     }
 
@@ -44,38 +54,12 @@ class NotificationListAdapter(private val devices: List<Notification>) : Recycle
         return NotificationViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: DeviceAdapter.DeviceViewHolder, position: Int) {
-        TODO("Not yet implemented")
-    }
-
-//    override fun onBindViewHolder(holder: DeviceAdapter.NotificationViewHolder, position: Int) {
-//        TODO("Not yet implemented")
-//    }
-
-    override fun onBindViewHolder(holder: NotificationViewHolder, position: Int) {
-        holder.bind(dsevices[position])
+    override fun onBindViewHolder(holder: NotificationListAdapter.NotificationViewHolder, position: Int) {
+        holder.bind(notice[position])
     }
 
     override fun getItemCount(): Int {
-        return devices.size
-    }
-}
-
-class SpaceItemDecoration(private val space: Int) : RecyclerView.ItemDecoration() {
-    override fun getItemOffsets(
-        outRect: Rect,
-        view: View,
-        parent: RecyclerView,
-        state: RecyclerView.State
-    ) {
-        with(outRect) {
-            if (parent.getChildAdapterPosition(view) == 0) {
-                top = space
-            }
-            left =  space
-            right = space
-            bottom = space
-        }
+        return notice.size
     }
 }
 

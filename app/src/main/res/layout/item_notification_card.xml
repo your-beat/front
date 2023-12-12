@@ -43,8 +43,8 @@
                 android:layout_weight="0.7"
                 android:gravity="end"
                 android:text="2023.12.12 13:10"
-                android:textAppearance="@style/TextAppearance.BodyM1"
-                android:textColor="@color/main400"/>
+                android:textAppearance="@style/TextAppearance.BodyM2"
+                android:textColor="@color/main"/>
         </LinearLayout>
         <TextView
             android:id="@+id/notification_info"

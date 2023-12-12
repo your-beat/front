@@ -12,6 +12,7 @@ import com.example.your_beat_front.data.DeviceDataSource
 import com.example.your_beat_front.databinding.FragmentHomeBinding
 import com.example.your_beat_front.databinding.FragmentNotificationBinding
 import com.example.your_beat_front.presentation.home.DeviceAdapter
+import com.example.your_beat_front.presentation.home.NotificationListAdapter
 import com.example.your_beat_front.presentation.home.SpaceItemDecoration
 
 class NotificationFragment : Fragment() {
@@ -33,13 +34,13 @@ class NotificationFragment : Fragment() {
     }
 
     private fun setupRecyclerView() {
-        val devices = DeviceDataSource.getDummyDevices() // 더미 데이터 가져오기
-        val adapter = DeviceAdapter(devices)
+        val notices = NoticeDataSource.getDummyNotice() // 더미 데이터 가져오기
+        val adapter = NotificationListAdapter(notices)
 
         with(binding.deviceListRecyclerView) {
             layoutManager = LinearLayoutManager(context) // 리사이클러뷰에 레이아웃 매니저 설정
             this.adapter = adapter // 리사이클러뷰에 어댑터 설정
-            addItemDecoration(SpaceItemDecoration(20)) // 10px의 간격을 추가합니다.
+            addItemDecoration(SpaceItemDecoration(20)) // 20px의 간격을 추가합니다.
         }
 
     }
