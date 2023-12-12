@@ -11,8 +11,9 @@
     <!-- 아이콘 -->
     <ImageView
         android:id="@+id/device_icon"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
         android:src="@drawable/ic_launcher_background" />
 
     <!-- 텍스트 정보 (기기명, 상태, 위치) -->

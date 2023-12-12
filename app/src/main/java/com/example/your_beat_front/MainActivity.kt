@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
             when (item.itemId) {
                 R.id.menu_home -> replaceFragment(HomeFragment())
                 //todo : 하단 네비에서 마이페이지, 알림 리스트 구현
-                //R.id.menu_notification -> replaceFragment(NotificationFragment())
+                R.id.menu_notification -> replaceFragment(NotificationFragment())
                 //R.id.menu_my_page -> replaceFragment(MyPageFragment())
                 else -> false
             }

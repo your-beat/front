@@ -46,7 +46,7 @@ class HomeFragment : Fragment() {
         with(binding.deviceListRecyclerView) {
             layoutManager = LinearLayoutManager(context) // 리사이클러뷰에 레이아웃 매니저 설정
             this.adapter = adapter // 리사이클러뷰에 어댑터 설정
-            addItemDecoration(SpaceItemDecoration(10)) // 10px의 간격을 추가합니다.
+            addItemDecoration(SpaceItemDecoration(20)) // 10px의 간격을 추가합니다.
         }
 
     }
