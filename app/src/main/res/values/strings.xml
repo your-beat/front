@@ -11,4 +11,8 @@
     <string name="pageTitle_myIoT">내 기기</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- 기타 문자열 리소스 -->
+    <string name="text_active">사용중</string>
+    <string name="text_inactive">사용안함</string>
 </resources>

@@ -29,7 +29,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="내 기기"
+                android:text="@string/pageTitle_myIoT"
                 android:textSize="24sp"
                 android:textAppearance="@style/TextAppearance.Title2"/>
         </LinearLayout>
@@ -52,7 +52,7 @@
                 android:background="@drawable/tag_active"
                 android:layout_gravity="bottom"
                 android:layout_marginLeft="8dp"
-                android:text="사용중"
+                android:text="사용상태"
                 android:textAppearance="@style/TextAppearance.CaptionM1"
                 android:textColor="@color/main400"/>
 

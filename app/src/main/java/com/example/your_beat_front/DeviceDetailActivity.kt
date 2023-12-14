@@ -33,6 +33,7 @@ class DeviceDetailActivity : AppCompatActivity() {
         val deviceIcon = findViewById<ImageView>(R.id.device_icon)
         val deviceName = findViewById<TextView>(R.id.txt_device_name)
         val deviceCode = findViewById<TextView>(R.id.txt_device_code)
+        val deviceState = findViewById<TextView>(R.id.tag_device_state)
 
         // 데이터 설정
         //device = getDeviceData() // 기기 데이터 가져오기
@@ -52,6 +53,13 @@ class DeviceDetailActivity : AppCompatActivity() {
             DrawableCompat.setTint(it, ContextCompat.getColor(this, R.color.main))
             deviceIcon.setImageDrawable(it)
         }
+        val deviceStatusTextView = findViewById<TextView>(R.id.tag_device_state)
+
+        val (backgroundResId, textResId,textColorResId) = when(device.status) {
+            0 -> Triple(R.drawable.tag_inactive, R.string.text_inactive,R.color.sub300) // "사용안함" 상태
+            1 -> Triple(R.drawable.tag_active, R.string.text_active,R.color.main)     // "사용중" 상태
+            else -> Triple(R.drawable.tag_inactive, R.string.text_inactive,R.color.sub300) // 기본값
+        }
 
         val btnPrevious = findViewById<ImageButton>(R.id.btn_previous)
         btnPrevious.setOnClickListener {
@@ -61,6 +69,9 @@ class DeviceDetailActivity : AppCompatActivity() {
         // 기기 이름과 제품코드 설정
         deviceName.text = device.name
         deviceCode.text = device.code
+        deviceStatusTextView.setBackgroundResource(backgroundResId)
+        deviceStatusTextView.setText(textResId)
+        deviceStatusTextView.setTextColor(ContextCompat.getColor(this, textColorResId))
     }
 
     private fun setupTabLayoutAndViewPager() {
