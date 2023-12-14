@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/gray100"
+    android:paddingTop="30dp"
+    android:paddingHorizontal="24dp">
+
+    <!-- 최상단 타이틀 -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="사용 기록"
+        android:textSize="24sp"
+        android:textAppearance="@style/TextAppearance.Title2"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- 기기 목록 RecyclerView -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/device_list_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <!-- 기록이 없을 때 표시되는 텍스트 -->
+    <TextView
+        android:id="@+id/no_devices_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="아직 기기를 사용하지 않았어요"
+        android:layout_gravity="center"
+        android:visibility="gone"/>
+</LinearLayout>

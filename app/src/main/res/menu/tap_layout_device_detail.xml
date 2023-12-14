@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_device_detail"
+        android:enabled="true"
+        android:title="세부 정보" />
+    <item
+        android:id="@+id/menu_device_control"
+        android:enabled="false"
+        android:title="기기 조작" />
+</menu>
