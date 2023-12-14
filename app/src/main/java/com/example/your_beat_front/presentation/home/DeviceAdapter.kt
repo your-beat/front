@@ -1,6 +1,5 @@
 package com.example.your_beat_front.presentation.home
 
-import android.graphics.Rect
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,13 +10,19 @@ import com.example.your_beat_front.R
 import com.example.your_beat_front.data.Device
 import com.example.your_beat_front.databinding.ItemDeviceCardBinding
 
-class DeviceAdapter(private val devices: List<Device>) : RecyclerView.Adapter<DeviceAdapter.DeviceViewHolder>() {
+class DeviceAdapter(    private val devices: List<Device>,
+                        private val onDeviceClickListener: OnDeviceClickListener
+) : RecyclerView.Adapter<DeviceAdapter.DeviceViewHolder>() {
+
+    interface OnDeviceClickListener {
+        fun onDeviceClick(device: Device)
+    }
 
     class DeviceViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         // 뷰 바인딩 객체 사용 (레이아웃에 따라 이름이 달라질 수 있습니다)
         val binding = ItemDeviceCardBinding.bind(view)
 
-        fun bind(device: Device) {
+        fun bind(device: Device, onDeviceClickListener: OnDeviceClickListener) {
             binding.deviceName.text = device.name
             binding.deviceLocation.text = device.location
             binding.deviceStatus.text = if (device.status == 0) "off" else "on"
@@ -41,6 +46,11 @@ class DeviceAdapter(private val devices: List<Device>) : RecyclerView.Adapter<De
             // 기기 상태에 따라 배경 설정
             val backgroundResId = if (device.status == 1) R.drawable.card_gradient_gb_round else R.drawable.card_gradient_ro_round
             binding.root.setBackgroundResource(backgroundResId)
+
+            // 아이템 클릭 리스너 설정
+            itemView.setOnClickListener {
+                onDeviceClickListener.onDeviceClick(device)
+            }
         }
     }
 
@@ -49,13 +59,15 @@ class DeviceAdapter(private val devices: List<Device>) : RecyclerView.Adapter<De
         return DeviceViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: DeviceViewHolder, position: Int) {
-        holder.bind(devices[position])
-    }
-
     override fun getItemCount(): Int {
         return devices.size
     }
+
+    override fun onBindViewHolder(holder: DeviceViewHolder, position: Int) {
+        val device = devices[position]
+        holder.bind(device, onDeviceClickListener)
+    }
+
 }
 
 
