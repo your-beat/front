@@ -1,6 +1,7 @@
 package com.example.your_beat_front
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
@@ -38,7 +39,7 @@ class DeviceDetailActivity : AppCompatActivity() {
         // 데이터 설정
         //device = getDeviceData() // 기기 데이터 가져오기
         device = intent.getSerializableExtra("device") as Device
-
+        Log.d("DeviceDetailActivity", "Device received: $device")
         // 아이콘 설정
         val iconResId = when (device.type) {
             // 기기 타입에 따른 아이콘 설정
@@ -78,7 +79,7 @@ class DeviceDetailActivity : AppCompatActivity() {
         tabLayout = findViewById(R.id.tab_layout)
         viewPager = findViewById(R.id.view_pager)
 
-        val adapter = DeviceTapAdapter(this)
+        val adapter = DeviceTapAdapter(this,device)
         viewPager.adapter = adapter
 
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
