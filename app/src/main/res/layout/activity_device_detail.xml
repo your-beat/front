@@ -8,6 +8,8 @@
         android:id="@+id/device_intro"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
         android:orientation="vertical"
         android:background="@color/white"
         android:paddingTop="30dp"
@@ -32,6 +34,14 @@
                 android:text="@string/pageTitle_myIoT"
                 android:textSize="24sp"
                 android:textAppearance="@style/TextAppearance.Title2"/>
+
+           <ImageButton
+               android:id="@+id/btn_refresh"
+               android:layout_gravity="center"
+               android:background="#00000000"
+               android:src="@drawable/ic_refresh"
+               android:layout_width="24dp"
+               android:layout_height="24dp"/>
         </LinearLayout>
 
         <LinearLayout

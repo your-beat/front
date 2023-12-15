@@ -7,9 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import com.example.your_beat_front.Service.ApiService
+import com.example.your_beat_front.Service.RetrofitClient
+import com.example.your_beat_front.data.DataManager
 import com.example.your_beat_front.data.Device
 
 class DeviceDetailFragment : Fragment() {
+    private lateinit var dataManager: DataManager
     private var device: Device? = null
     companion object {
         private const val ARG_DEVICE = "device"
@@ -52,5 +56,32 @@ class DeviceDetailFragment : Fragment() {
         deviceStateTextView.text = deviceStatusText
 
         return view
+    }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val apiService = RetrofitClient.retrofitInstance.create(ApiService::class.java)
+        dataManager = DataManager(apiService)
+
+        device?.let {
+            fetchDeviceDetails(it.name)
+        }
+    }
+
+    private fun fetchDeviceDetails(deviceId: String) {
+        dataManager.fetchDeviceDetails(deviceId) { device, error ->
+            error?.let {
+                // 오류 처리
+            } ?: run {
+                device?.let { updatedDevice ->
+                    updateUI(updatedDevice)
+                }
+            }
+        }
+    }
+
+    private fun updateUI(device: Device) {
+        // 뷰에 Device 데이터 설정
+        // 예: deviceLocationTextView.text = device.location
     }
 }
